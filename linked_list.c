@@ -59,6 +59,40 @@ void insert_last_position()
     }
 }
 
+void insert_any_position()
+{
+    printf("Inserting node at any position\n");
+    int key;
+    printf("Where you want to insert new node: ");
+    scanf("%d", &key);
+    node *ptr = head;
+    if (head == NULL)
+    {
+        printf("No node in linked list\n");
+        insert_first_position();
+        return;
+    }
+    while (ptr != NULL)
+    {
+        if (ptr->data == key)
+        {
+            node *new_node;
+            new_node = (node *)malloc(sizeof(node));
+            int data;
+            printf("Enter the item: ");
+            scanf("%d", &data);
+            new_node->data = data;
+            new_node->next = ptr->next;
+            ptr->next = new_node;
+            return;
+        }
+        else
+        {
+            ptr = ptr->next;
+        }
+    }
+}
+
 int main()
 {
     insert_first_position();
@@ -66,5 +100,6 @@ int main()
     print_linked_list();
 
     insert_last_position();
+    insert_any_position();
     print_linked_list();
 }
