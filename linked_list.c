@@ -91,6 +91,7 @@ void insert_any_position()
             ptr = ptr->next;
         }
     }
+    insert_last_position();
 }
 
 int main()
