@@ -56,6 +56,7 @@ int main()
     int size = sizeof(arr) / sizeof(int);
     int low = 0, high = size - 1;
     printf("The unsorted array is: ");
+    printArray(arr, size);
     recursiveMergeSort(arr, low, high);
     printf("The sorted array is: ");
     printArray(arr, size);
