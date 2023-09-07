@@ -63,7 +63,6 @@ void margeSingleArray(int a[], int low, int mid, int high)
 
 void printArray(int arr[], int n)
 {
-    printf("The sorted array is: ");
     for (int i = 0; i < n; i++)
     {
         printf("%d ", arr[i]);
