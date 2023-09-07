@@ -1,87 +1,104 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-void swap(int *a, int *b)
+struct Node
 {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
+    int data;
+    struct Node *next;
+};
+typedef struct Node node;
+node *head = NULL;
+
+void view()
+{
+    node *ptr = head;
+
+    if (ptr == NULL)
+    {
+        printf("Empty linked list");
+    }
+
+    while (ptr != NULL)
+    {
+        printf("%d ", ptr->data);
+        ptr = ptr->next;
+    }
+    printf("\n");
 }
 
-int binarySearch(int a[], int l, int h, int key)
+void add_first()
 {
-    if (l > h)
-        return -1;
-    int mid = (l + h) / 2;
-    if (a[mid] == key)
-        return mid;
-    else if (a[mid] > key)
-        binarySearch(a, l, mid - 1, key);
+    int data;
+    printf("Enter data in first position: ");
+    scanf("%d", &data);
+    node *new_node;
+    new_node = (node *)malloc(sizeof(node));
+    new_node->data = data;
+    new_node->next = head;
+    head = new_node;
+}
+
+void add_last()
+{
+    int data;
+    printf("Enter data in last position: ");
+    scanf("%d", &data);
+    node *new_node;
+    new_node = (node *)malloc(sizeof(node));
+    node *ptr = head;
+    if (ptr == NULL)
+    {
+        head = new_node;
+        new_node->data = data;
+        new_node->next = NULL;
+    }
     else
-        binarySearch(a, mid + 1, h, key);
+    {
+        new_node->data = data;
+        new_node->next = NULL;
+        while (ptr->next != NULL)
+        {
+            ptr = ptr->next;
+        }
+        ptr->next = new_node;
+    }
 }
 
-// int binarySearch(int a[], int n, int key)
-// {
-//     int low = 0, mid;
-//     int high = n - 1;
-//     while (low <= high)
-//     {
-//         mid = (low + high) / 2;
-//         if (a[mid] == key)
-//         {
-//             return mid;
-//         }
-//         else if (a[mid] > key)
-//         {
-//             high = mid - 1;
-//         }
-//         else
-//         {
-//             low = mid + 1;
-//         }
-//     }
-//     return -1;
-// }
-
-// void bubbleSort(int a[], int n)
-// {
-//     for (int i = 0; i < n - 1; i++)
-//     {
-//         for (int j = 0; j < n - 1 - i; j++)
-//         {
-//             if (a[j] > a[j + 1])
-//             {
-//                 swap(&a[j], &a[j + 1]);
-//             }
-//         }
-//     }
-// }
-
-// void insertionSort(int a[], int n)
-// {
-//     for (int i = 1; i < n; i++)
-//     {
-//         int value = a[i];
-//         int hole = i;
-
-//         while (hole > 0 && a[hole - 1] > value)
-//         {
-//             a[hole] = a[hole - 1];
-//             hole--;
-//         }
-//         a[hole] = value;
-//     }
-// }
+void add_any()
+{
+    printf("Inserting node at any position\n");
+    int key;
+    printf("Where you want to insert new node: ");
+    scanf("%d", &key);
+    node *ptr = head;
+    if (head == NULL)
+    {
+        add_first();
+        return;
+    }
+    else
+    {
+        while (ptr != NULL)
+        {
+            if (ptr->data == key)
+            {
+                int data;
+                printf("Enter data: ");
+                scanf("%d", &data);
+                node *new_node;
+                new_node = (node *)malloc(sizeof(node));
+                new_node->data = data;
+                new_node->next = ptr->next;
+                ptr->next = new_node;
+            }
+        }
+        add_last();
+    }
+}
 
 int main()
 {
-    // int arr[] = {5, 3, 1, 7, 6, 2};
-    int arr[] = {1, 3, 6, 7, 20, 23, 27, 31, 40};
-    int n = sizeof(arr) / sizeof(int);
-    printf("%d", binarySearch(arr, 0, n - 1, 21));
-    // for (int i = 0; i < n; i++)
-    // {
-    //     printf("%d ", arr[i]);
-    // }
-    // printf("\n");
+    add_last();
+    add_last();
+    view();
 }
