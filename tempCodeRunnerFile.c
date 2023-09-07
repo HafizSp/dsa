@@ -31,6 +31,7 @@ void marge(int a[], int low, int mid, int high)
 
 void printArray(int arr[], int n)
 {
+    printf("The sorted array is: ");
     for (int i = 0; i < n; i++)
     {
         printf("%d ", arr[i]);
@@ -55,8 +56,6 @@ int main()
     int arr[] = {9, 8, 7, 6, 4, 5, 3, 2};
     int size = sizeof(arr) / sizeof(int);
     int low = 0, high = size - 1;
-    printf("The unsorted array is: ");
     recursiveMergeSort(arr, low, high);
-    printf("The sorted array is: ");
     printArray(arr, size);
 }
