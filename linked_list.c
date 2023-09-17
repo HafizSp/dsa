@@ -94,13 +94,80 @@ void insert_any_position()
     insert_last_position();
 }
 
+// Delete
+void delete_head()
+{
+    printf("Delete head...\n");
+    if (head == NULL)
+    {
+        printf("Underflow");
+        return;
+    }
+    printf("Delete head\n");
+    head = head->next;
+}
+
+void delete_last()
+{
+    printf("Delete last...\n");
+    node *ptr = head;
+    if (head == NULL)
+    {
+        printf("Underflow\n");
+        return;
+    }
+    else if (ptr->next == NULL)
+    {
+        delete_head();
+        return;
+    }
+    else
+    {
+        while (ptr->next->next != NULL)
+        {
+            ptr = ptr->next;
+        }
+        ptr->next = NULL;
+    }
+}
+
+void delete_any_position()
+{
+    node *ptr = head;
+    node *previous;
+    int key;
+    printf("Enter which item you want to delete: ");
+    scanf("%d", &key);
+
+    if (head == NULL)
+    {
+        printf("Empty linked list\n");
+        return;
+    }
+    if (ptr != NULL && ptr->data == key)
+    {
+        head = ptr->next;
+        return;
+    }
+    while (ptr != NULL && ptr->data != key)
+    {
+        previous = ptr;
+        ptr = ptr->next;
+    }
+    if (ptr == NULL)
+    {
+        printf("The item is not present in the linked list");
+        return;
+    }
+    previous->next = ptr->next;
+}
+
 int main()
 {
-    insert_first_position();
-    insert_first_position();
-    print_linked_list();
-
     insert_last_position();
-    insert_any_position();
+    insert_last_position();
+    insert_last_position();
+    print_linked_list();
+    delete_any_position();
     print_linked_list();
 }

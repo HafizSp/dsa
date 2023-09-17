@@ -26,7 +26,7 @@ int main()
 {
     int key;
     printf("Enter the key: ");
-    scanf("%d", key);
+    scanf("%d", &key);
     int arr[] = {2, 6, 8, 10, 16, 18, 21};
     int size = sizeof(arr) / sizeof(int);
     int result = binarySearch(arr, size, key);
