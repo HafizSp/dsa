@@ -149,17 +149,17 @@ void delete_any_position()
         head = ptr->next;
         return;
     }
-    while (ptr != NULL && ptr->data != key)
+    while (ptr != NULL && ptr->next->data != key)
     {
-        previous = ptr;
         ptr = ptr->next;
     }
+    ptr->next = ptr->next->next;
+    return;
     if (ptr == NULL)
     {
         printf("The item is not present in the linked list");
         return;
     }
-    previous->next = ptr->next;
 }
 
 int main()
